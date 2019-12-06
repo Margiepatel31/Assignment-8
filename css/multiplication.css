@@ -1,0 +1,143 @@
+/*
+File:
+91.461 GUI Programming I  Assignment# 7:  Using the jQuery Validation Plugin with Dynamic Table
+Margie Patel, Umass Lowell Computer Science, Margie_Patel@student.uml.edu
+Copyright (c) 2019 by Margie_Patel. All rights reserved.
+updated by MP on November 27, 2019 at 8:00 PM
+Description:  css file to provide styling to multiplication.html file
+*/
+
+
+body {
+  background: linear-gradient(to bottom, #20B2AA 0%, 	#ADD8E6	 100%);  /* to set gradient background */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-width: 600px;
+}
+
+.container {
+  padding: 35px;
+  background: linear-gradient(to bottom, #008B8B 0%,	#5F9EA0 100%); /* to set gradient background */
+  }
+
+#header{
+  background: linear-gradient(to top, #008B8B 0%, #5F9EA0 100%);
+  text-align: center;
+}
+
+#form {
+  margin-left: 30%;
+  margin-right: auto;
+  min-width: 200px;
+  }
+
+#sliderXBegin {
+  margin:10px auto 0;
+ }
+
+ #sliderXEnd {
+   margin:10px auto 0;
+  }
+
+  #sliderYBegin {
+    margin:10px auto 0;
+  }
+
+  #sliderYEnd {
+     margin:10px auto 0;
+  }
+
+#button_design {
+  margin-left: 20%;
+  margin-right: auto;
+  min-width: 200px;
+}
+
+#myTable {
+  text-align: center;
+  width : 80%;
+  color: Black;
+  background-color: 0xb1a8a;
+  background-attachment: fixed;
+}
+
+
+#table {
+  /* to scroll when table does not fit in container */
+  overflow: scroll;
+  margin-top: 5%;
+  margin-left: 10%;
+  }
+
+/* to style multiplier's row and multiplicand's column using pseudo code */
+tr:first-child, td:first-child{
+  background-color: #008080;
+  font-weight: bolder;
+  color: #121212;
+}
+
+
+table td{
+  padding: 5px;
+  border: solid 2px Black;
+}
+
+label{
+  font-weight: bold;
+  color: navy;
+}
+
+/* when mouse hover over input box */
+input:hover {
+  background-color: lightblue;
+  border: 3px solid orange;
+}
+
+/* when cursor in input field */
+input:focus {
+  background-color: #008080;
+  border: 3px solid tomato;
+  color: Black;
+}
+input.error{
+  color : red;
+  border: 3px red solid;
+}
+
+input{
+  box-sizing: border-box;
+  border: 1px solid #000000;
+  outline: none;
+  color: navy;
+  background-color: white;
+  text-align: center;
+}
+
+/* to style range info and header */
+li, header{
+  font-weight: bold;
+  color: navy;
+}
+
+h5{
+  color : #660033;
+}
+
+
+footer{
+  color:#fff;
+  text-align: center;  /* to align text in center */
+}
+
+footer a {
+  color: white;
+}
+
+label.error {
+    color : #990000;
+}
+
+img {
+  float: left;
+}
