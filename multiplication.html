@@ -18,6 +18,8 @@ Description:  this web page use javascript to create dynamic multiplication tabl
  <!-- ui -->
  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!--<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+ <link rel="stylesheet" href="css/tabsTheme.css">   -->
 </head>
 <body>
 
@@ -53,7 +55,7 @@ Description:  this web page use javascript to create dynamic multiplication tabl
   <div class="container">
     <h5>Enter four inputs in the given range below:</h5>
     <ul>
-      <li>Multiplier: -50 to 50</li>
+      <li>Multiplier: -100 to 100</li>
       <li>Multiplicand: -100 to 100</li>
     </ul>
   </div>
@@ -69,13 +71,13 @@ Description:  this web page use javascript to create dynamic multiplication tabl
           <div class= "col-sm-7 col-md-9">
             <!-- if the user try to enter alphabets type = "number" handles that error -->
             <input type="number" name="sMultiplier" id="xBegin"  required>
-           <div id="sliderXBegin"></div>
+            <div id="sliderXBegin"></div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-5 col-md-3 col-form-label">Ending multiplier:</label>
           <div class="col-sm-7 col-md-9">
-            <input type="number" name="eMultiplier" id="xEnding" required><br>
+            <input type="number" name="eMultiplier" id="xEnd" required><br>
             <div id="sliderXEnd"></div>
           </div>
         </div>
@@ -89,7 +91,7 @@ Description:  this web page use javascript to create dynamic multiplication tabl
         <div class="form-group row">
           <label class="col-sm-5 col-md-3 col-form-label">Ending multiplicand:</label>
           <div class="col-sm-7 col-md-9">
-            <input type="number" name="eMultiplicand" id="yEnding" required><br>
+            <input type="number" name="eMultiplicand" id="yEnd" required><br>
             <div id="sliderYEnd"></div>
           </div>
         </div>
@@ -100,7 +102,21 @@ Description:  this web page use javascript to create dynamic multiplication tabl
       <div class="form-group row">
         <div class="col-sm-10">
           <!-- When Generate Button is clicked it invokes the generateTable() -->
-          <button type="submit" id="btn" class="btn btn-danger">Generate Table</button>
+          <button type="submit" id="ca" class="btn btn-danger">Generate Table</button>
+          <button type="submit" id="saveData" class="btn btn-danger">Save Table Data </button>
+
+
+          <!--<div id = "tabs">
+                     <ul>
+                         <li><a href = "#tabs-1">Tab</a></li>
+
+                      </ul>
+
+                      <div id = "tabs-1">
+                         <p>
+
+                         </p>
+        </div>  -->
         </div>
       </div>
     </div>
@@ -111,15 +127,37 @@ Description:  this web page use javascript to create dynamic multiplication tabl
   <div id ="table"></div>
   </div>
 
-
+<!--  <div id="myTabs">
+  <ul>
+  <li><a href="#a">Tab 1</a></li>
+  <li><a href="#b">Tab 2</a></li>
+  </ul>
+  </div>
+-->
   <div class ="container">
     <footer>
       <p>Copyright &copy; 2019 <a href="mailto:Margie_Patel@student.uml.edu">MPatel </a>
 
        </p>
 
+
     </footer>
   </div>
+
+  <script src="development-bundle/jquery-x.x.x,js">
+   </script>
+   <script src="development-bundle/ui/jquery.ui.core.js">
+   </script>
+   <script
+   src="development-bundle/ui/jquery.ui.widget.js">
+   </script>
+   <script src="development-bundle/ui/jquery.ui.tabs.js">
+   </script>
+   <script>
+   (function($){
+   $("#myTabs").tabs();
+   })(jQuery);
+   </script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
