@@ -55,6 +55,7 @@ var tblInitializer = {
        tblInitializer.initializeHelper( "xEnd" ) ;
        tblInitializer.initializeHelper( "yBegin" ) ;
        tblInitializer.initializeHelper( "yEnd" ) ;
+       tblInitializer.initializeHelper( "#btn" ) ;
      }
    } ; //tblInitializer
 
@@ -101,10 +102,10 @@ var tblInitializer = {
        // }
 
        var str ;   // helper function return value
-       if ( ( str = tblValidator.validateFormHelper( "xBegin", "Starting miltiplier" ) ) !== "OK" ||
-            ( str = tblValidator.validateFormHelper( "xEnd"  , "ending multiplier" ) ) !== "OK" ||
-            ( str = tblValidator.validateFormHelper( "yBegin", "Starting multiplicand" ) ) !== "OK" ||
-            ( str = tblValidator.validateFormHelper( "yEnd"  , "Ending multiplicand" ) ) !== "OK" ) {
+       if ( ( str = tblValidator.validateFormHelper( "xBegin", "Minimum Column Value" ) ) !== "OK" ||
+            ( str = tblValidator.validateFormHelper( "xEnd"  , "Maximum Column Value" ) ) !== "OK" ||
+            ( str = tblValidator.validateFormHelper( "yBegin", "Minimum Row Value" ) ) !== "OK" ||
+            ( str = tblValidator.validateFormHelper( "yEnd"  , "Maximum Row Value" ) ) !== "OK" ) {
          $('#msg').html( str ) ;
          return false ;
        }
@@ -113,12 +114,14 @@ var tblInitializer = {
 
    } ; // tblValidator
 
-$().ready( function(){
+$().ready(function(){
 
   var sliderOpts = {
-       min : -10 ,
-       max : 10 ,
-       //value : 0 ,
+       min : -100 ,
+       max : 100 ,
+       min1:-100,
+       max1:100,
+       // value : 0 ,
        slide : function( e, ui ) {
 
          //// the following code displays all the properties of object e
@@ -130,14 +133,16 @@ $().ready( function(){
 
          // set the input field value to the new slider value
          var strInputID = "#" + e.target.id.substr( 6, 1 ).toLowerCase() + e.target.id.substr( 7 ) ;
+
+
          $( strInputID ).val( ui.value ) ;
 
          // remove and regenerate the table when the slider is changed
          $('#tbl1').remove() ;
          tblGenerator.xBegin = parseInt( $('#xBegin').val() ) ;
-         tblGenerator.xEnd =  parseInt( $('#xEnd').val() ) ;
+         tblGenerator.xEnd =   parseInt( $('#xEnd').val() ) ;
          tblGenerator.yBegin = parseInt( $('#yBegin').val() ) ;
-         tblGenerator.yEnd =  parseInt( $('#yEnd').val() ) ;
+         tblGenerator.yEnd =   parseInt( $('#yEnd').val() ) ;
          tblGenerator.populateMultiplicationTable_jQuery( "#placeholder", true, true ) ;
        }
      } ;
@@ -149,9 +154,9 @@ $().ready( function(){
      // initialize the table from the passed values
      tblInitializer.initialize() ;
      $( '#sliderXBegin' ).slider( "value", parseInt( $( '#xBegin' ).val() ) ) ;
-     $( '#sliderXEnd' ).slider( "value", parseInt( $( '#xEnd' ).val() ) ) ;
-     $( '#sliderYBegin' ).slider( "value", parseInt( $( '#yBegin' ).val() ) ) ;
-     $( '#sliderYEnd' ).slider( "value", parseInt( $( '#yEnd' ).val() ) ) ;
+         $( '#sliderXEnd' ).slider( "value", parseInt( $( '#xEnd' ).val() ) ) ;
+         $( '#sliderYBegin' ).slider( "value", parseInt( $( '#yBegin' ).val() ) ) ;
+         $( '#sliderYEnd' ).slider( "value", parseInt( $( '#yEnd' ).val() ) ) ;
 
          $('#frm').submit( function() {  // revised in Version 6
 
@@ -182,6 +187,7 @@ $().ready( function(){
 
 
 
+
   $.validator.addMethod("greaterThan", function(value, max, min){
     return parseInt(value) >= parseInt($(min).val());},
     "Ending number must be greater or equal to Starting number"
@@ -194,13 +200,13 @@ $().ready( function(){
 
       sMultiplier : {
         required: true,
-        min : -50,
+        min : -100,
         number: true
       } ,
 
       eMultiplier : {
         required: true,
-        max : 50,
+        max : 100,
         number: true,
         greaterThan : '#xBegin'
       } ,
@@ -283,63 +289,75 @@ $().ready( function(){
       label.addClass("valid");
     },
   }); // ends validate
+});
 
-  $('#btn').on("click", function () {
+$(document).ready(function(){
+$("#ca").click(function () {
 
-    if ($("#frm").valid() == false) {
-      if (document.getElementById("table").hasChildNodes()){
-        document.getElementById("table").innerHTML = "";
+      if ($("#frm").valid() == false) {
+        if (document.getElementById("table").hasChildNodes()){
+          document.getElementById("table").innerHTML = "";
+        }
+        return;
       }
-      return;
-    }
-    else {
-      if (document.getElementById("table").hasChildNodes()){
-        document.getElementById("table").innerHTML = "";
-      }
+      else {
+        if (document.getElementById("table").hasChildNodes()){
+          document.getElementById("table").innerHTML = "";
+        }
 
-      var sMultiplier = $('#xBegin').val();
-      var eMultiplier = $('#xEnding').val();
-      var sMultiplicand = $('#yBegin').val();
-      var eMultiplicand = $('#yEnding').val();
+        var sMultiplier = $('#xBegin').val();
+        console.log(sMultiplier);
+        var eMultiplier = $('#xEnd').val();
+        var sMultiplicand = $('#yBegin').val();
+        var eMultiplicand = $('#yEnd').val();
 
-      var table =  document.createElement("TABLE");
-      table.setAttribute("id", "myTable");
-      document.getElementById("table").appendChild(table);
+        var table =  document.createElement("TABLE");
+        table.setAttribute("id", "myTable");
+        document.getElementById("table").appendChild(table);
 
-      var i;
-      var j;
-      var r;
-      var s;
+        var i;
+        var j;
+        var r;
+        var s;
 
-      for(i = sMultiplicand - 1,  r = 0;  i <= eMultiplicand;  i++, r++) {
+        for(i = sMultiplicand - 1,  r = 0;  i <= eMultiplicand;  i++, r++) {
 
-        var row = table.insertRow(r);
+          var row = table.insertRow(r);
 
-        for(j = sMultiplier - 1,  s = 0; j <= eMultiplier; j++, s++) {
+          for(j = sMultiplier - 1,  s = 0; j <= eMultiplier; j++, s++) {
 
-          var cell = row.insertCell(s);
+            var cell = row.insertCell(s);
 
-          /* multiplier row */
-          if (r === 0 && s > 0) {
-            cell.innerHTML = j;
-          }
+            /* multiplier row*/
+            if (r === 0 && s > 0) {
+              cell.innerHTML = j;
+            }
 
-          /* multiplicand column */
-          else if (s === 0 && r > 0) {
-            cell.innerHTML = i;
-          }
+            /* multiplicand column */
+            else if (s === 0 && r > 0) {
+              cell.innerHTML = i;
+            }
 
-          /* multiplication of corresponding entries */
-          else if (s > 0 && r > 0) {
-            cell.innerHTML = i * j;
-          }
+            /* multiplication of corresponding entries */
+            else if (s > 0 && r > 0) {
+              cell.innerHTML = i * j;
+            }
 
-        } // inner for loop ends
+          } // inner for loop ends
 
-      }  // outer for loop ends
+        }  // outer for loop ends
 
-    } //else
-    //your code here is wrong,change to '})',then ok!!
+      } //else
+      //your code here is wrong,change to '})',then ok!!
+    }); // btn
+
+//  }); // ready end
+
+
+
+  $("#saveData").click(function () {
+
+        console.log("das");
   }); // btn
 
 }); // ready end
